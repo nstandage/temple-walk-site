@@ -1,0 +1,294 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --gold:       #b8922a;
+  --gold-light: #f0dfa0;
+  --cream:      #faf7f2;
+  --white:      #ffffff;
+  --text:       #2c2c2c;
+  --text-muted: #6b6460;
+  --border:     #e2d9cc;
+  --shadow:     rgba(0, 0, 0, 0.07);
+}
+
+html {
+  font-size: 17px;
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background-color: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  padding-bottom: 3rem;
+}
+
+/* ── Header ── */
+
+header {
+  background: linear-gradient(160deg, #2a3a5c 0%, #1a2840 100%);
+  color: var(--white);
+  text-align: center;
+  padding: 2.5rem 1.5rem 2rem;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+
+header h1::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 2px;
+  background: var(--gold);
+  margin: 0.6rem auto 0;
+  border-radius: 2px;
+}
+
+/* ── Main layout ── */
+
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ── Collapsible sections ── */
+
+details.section {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px var(--shadow);
+  overflow: hidden;
+}
+
+details.section summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.1rem 1.25rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+details.section summary::-webkit-details-marker {
+  display: none;
+}
+
+details.section summary:active {
+  background-color: #f5f0ea;
+}
+
+/* Instructions section accent */
+details.section--instructions > summary {
+  background: linear-gradient(90deg, #2a3a5c 0%, #3a4f78 100%);
+  color: var(--white);
+}
+
+details.section--instructions > summary .section-title {
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  flex: 1;
+}
+
+/* Corner sections */
+details.section--corner > summary {
+  background: var(--white);
+}
+
+.section-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.section-number {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--gold);
+  line-height: 1;
+  flex: 1;
+}
+
+/* Expand/collapse chevron */
+.section-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.section-icon::before,
+.section-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+  transition: transform 0.2s ease;
+}
+
+.section-icon::before {
+  left: 1px;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.section-icon::after {
+  right: 1px;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+details[open] .section-icon::before {
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+details[open] .section-icon::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+details.section--instructions .section-icon::before,
+details.section--instructions .section-icon::after {
+  background: var(--gold-light);
+}
+
+/* ── Section body ── */
+
+.section-body {
+  padding: 1rem 1.25rem 1.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.instructions-text {
+  line-height: 1.7;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+/* ── Cards (quote / question) ── */
+
+.card {
+  background: var(--cream);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  padding: 0.9rem 1rem;
+}
+
+.card-heading {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+
+/* ── Blockquote ── */
+
+blockquote {
+  padding: 0;
+  border: none;
+}
+
+blockquote p {
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+blockquote cite {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  font-style: normal;
+  color: var(--text-muted);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* ── Question ── */
+
+.question-text {
+  line-height: 1.65;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+/* ── Dark mode ── */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gold:       #c9a84c;
+    --gold-light: #f0dfa0;
+    --cream:      #1c1c1e;
+    --white:      #2a2a2e;
+    --text:       #e8e2d8;
+    --text-muted: #9a9390;
+    --border:     #3a3630;
+    --shadow:     rgba(0, 0, 0, 0.35);
+  }
+
+  body {
+    background-color: #141416;
+  }
+
+  header {
+    background: linear-gradient(160deg, #1a2438 0%, #0e1520 100%);
+  }
+
+  details.section--instructions > summary {
+    background: linear-gradient(90deg, #1a2438 0%, #243050 100%);
+  }
+
+  details.section--corner > summary {
+    background: var(--white);
+  }
+
+  details.section summary:active {
+    background-color: #32302c;
+  }
+}
+
+/* ── Mobile polish ── */
+
+@media (max-width: 480px) {
+  header h1 {
+    font-size: 1.65rem;
+  }
+
+  main {
+    padding: 1rem 0.75rem;
+  }
+
+  details.section summary {
+    padding: 1rem;
+  }
+
+  .section-body {
+    padding: 0.9rem 1rem 1.25rem;
+  }
+}
